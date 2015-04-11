@@ -1,15 +1,11 @@
 docker run -d \
        --name registry \
        -e SETTINGS_FLAVOR=prod \
-       -e AWS_BUCKET=yoshiso-docker-registory \
-       -e AWS_REGION=ap-northeast-1 \
+       -e LOGLEVEL=debug \
+       -e AWS_BUCKET=yoshiso-docker-registry \
        -e AWS_KEY="$AWS_ACCESS_KEY_ID" \
        -e AWS_SECRET="$AWS_SECRET_ACCESS_KEY" \
-       -e AWS_SECURE=true \
-       -e DOCKER_REGISTRY_CONFIG=/docker-registry/config/config_sample.yml \
-       -e STORAGE_PATH=/ \
+       -e STORAGE_PATH=/registry \
        -e SEARCH_BACKEND=sqlalchemy \
-       -e GUNICORN_WORKERS=3 \
        -p 5000:5000 \
-       registry:0.7.3 \
-       docker-registry
+       registry:0.7.3
